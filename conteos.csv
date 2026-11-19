@@ -1,0 +1,4 @@
+fecha,conjunto,filtro,esperadas,traidas,ids_unicos,paginas,estado,archivo,detalle
+2026-11-19 08:28,ordenes,,1390,1390,1390,2,completa,data/raw/ordenes_2026-11-19_082810.json,
+2026-11-19 08:29,equipos,,682,682,682,1,completa,data/raw/equipos_2026-11-19_082909.json,
+2026-11-19 08:42,ordenes,,1390,1000,1000,3,incompleta,,traídas distintas de esperadas
