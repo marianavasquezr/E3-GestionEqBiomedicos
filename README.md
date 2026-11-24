@@ -36,3 +36,18 @@ Equipo E3 · Análisis de Datos Intermedio · Estud-IA (Capa 2)
 - Es público: nada de datos personales, contraseñas, tokens ni llaves.
 - Las credenciales van en un archivo `.env`, que Git ignora (ver `.gitignore`). `.env.example` muestra qué variables hacen falta, sin valores.
 - Cada commit explica en su mensaje qué se decidió y por qué.
+
+## Carga y staging
+
+**Carga (bruto):** `bruto.ordenes`, 1390 filas = 1390 traídas (conteos.csv); `bruto.equipos`, 682 = 682. Todo como texto, tal como llegó de la API.
+
+**Staging:** vista `staging.stg_ordenes` (`sql/stg_ordenes.sql`). Dos reglas:
+- **T1** · `tipo_mantenimiento` llegaba escrito de 9 formas (`CORRECTIVO`, `Corr.`, `Prev.`, espacios al final…). Todas significan Preventivo o Correctivo y se unifican. Ejemplo: `CORRECTIVO` (86 filas) → `Correctivo`.
+- **T2** · `fecha_solicitud` y `fecha_atencion` llegaban en dos formatos según el canal (Web: `2026-11-18T13:42:00.000`; Planilla: `29/09/2026 07:00`). Pasan a fecha-hora real. La planilla se lee como día/mes/año. Si no convierte, queda nulo.
+
+| Control | Bruto | Staging | ¿Es lo esperado? |
+|---|---|---|---|
+| Filas | 1390 | 1390 | Sí: el staging no quita filas |
+| `tipo_mantenimiento` (valores distintos) | 9 | 2 | Sí: T1 unió las formas de escribir Preventivo y Correctivo |
+| `fecha_solicitud` sin convertir | 0 | 0 | Sí: T2 convirtió las 1390 |
+| `fecha_atencion` vacías | 67 | 67 | Sí: T2 no creó nulos nuevos; esas 67 ya venían vacías |
