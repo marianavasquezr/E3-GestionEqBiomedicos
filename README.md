@@ -30,6 +30,7 @@ Equipo E3 · Análisis de Datos Intermedio · Estud-IA (Capa 2)
 | Fecha | Decisión | Por qué |
 |---|---|---|
 | 2026-11-17 | Usar la API del Hospital Monteverde como fuente | No hay acceso a datos reales de un hospital y las fallas no se publican en portales abiertos. Por ende, el profesor construyó una base simulada a partir de nuestro brief |
+| 2026-11-24 | Perfilar el bruto con `perfil.py` (pandas) antes de limpiar | La API no agrupa; un script deja las cifras repetibles por cualquiera del equipo. Las reglas del staging salen de este perfil (ver «Perfil de la fuente») |
 
 ## Reglas del repositorio
 
